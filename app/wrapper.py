@@ -4,14 +4,16 @@ import traceback
 
 app_directory_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(app_directory_path)
-# The above two lines can be replaced by setting PYTHONPATH in ENV itself
-from app import parking_lot_tracker as main, utils
+# The above two lines can be replaced by updating PYTHONPATH in ENV itself
+from app import parking_lot_tracker as main, utils, constants
 
 
 def menu(parking):
     print("Welcome to Parking Lot Tracker.")
     while True:
-        parking.print_vars()
+        if constants.MODE == "DEBUG":
+            parking.print_stats()
+
         choice = input(
             "\nMenu\n"
             + "1. Assign a parking space to a new vehicle\n"
@@ -27,12 +29,17 @@ def menu(parking):
         choice = int(choice)
 
         if choice == 1:
-            print(parking.add_new_parking(input()))
+            vehicle_number = utils.accept_vehicle_number()
+            result = parking.add_new_parking(vehicle_number)
+            print(result, "\n")
         elif choice == 2:
-            print(parking.fetch_parking_spot(input()))
+            vehicle_number = utils.accept_vehicle_number()
+            result = parking.fetch_parking_spot(vehicle_number)
+            print(result, "\n")
         elif choice == 3:
-            print(parking.unpark(input()))
-
+            vehicle_number = utils.accept_vehicle_number()
+            result = parking.unpark(vehicle_number)
+            print(result, "\n")
         else:
             print("Exiting..")
             break
