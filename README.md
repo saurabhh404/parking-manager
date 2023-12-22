@@ -21,6 +21,21 @@ mentioned operations.
 ● Avoid using a database by using in-memory storage (RAM) \
 ● Share the link of the github repository (It is a must) for final assessment.
 
-### Solution
+### Steps to run
 
-> InProgress
+1. Set the following config variables
+
+   ```
+   LEVEL_COUNTER -- (int) Number of levels, default 2 (A and B)
+   LEVEL_CAPACITY -- (int) Per level parking capacity, default 20
+   MODE -- (str) Set to DEBUG for enabling debug stats, default TEST
+   ```
+
+1. Run the wrapper file to start Application Menu
+   ```
+   python app/wrapper.py
+   ```
+
+---
+
+> 💡Developed solely using inbuilt functions, no additional dependencies are required.
